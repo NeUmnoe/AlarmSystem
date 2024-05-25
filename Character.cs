@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    const string SpeedParameter = "Speed";
+    const string VerticalParameter = "Vertical";
+    const string HorizontalParameter = "Horizontal";
+
     [SerializeField] private float _speed = 5.0f;
 
     private Animator _animator;
@@ -19,8 +23,8 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis(HorizontalParameter);
+        float moveVertical = Input.GetAxis(VerticalParameter);
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
@@ -31,7 +35,8 @@ public class Character : MonoBehaviour
     private void HandleMovement(Vector3 movement)
     {
         float speed = movement.magnitude;
-        _animator.SetFloat("Speed", speed);
+
+        _animator.SetFloat(SpeedParameter, speed);
 
         if (speed > 0)
         {

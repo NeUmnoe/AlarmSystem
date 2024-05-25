@@ -1,15 +1,16 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent (typeof(BoxCollider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+
 public class AlarmSystem : MonoBehaviour
 {
     private AudioSource _audioSource;
     private Coroutine _coroutineActiveSound;
-    private const float MaxVolume = 1.0f;
-    private const float MinVolume = 0f;
-    private const float StepVolume = 0.02f;
+    private float MaxVolume = 1.0f;
+    private float MinVolume = 0f;
+    private float StepVolume = 0.02f;
 
     private void Start()
     {
@@ -45,7 +46,7 @@ public class AlarmSystem : MonoBehaviour
 
     private IEnumerator ChangeVolume(float targetVolume)
     {
-        if (targetVolume == MaxVolume && _audioSource.isPlaying==false)
+        if (_audioSource.isPlaying == false)
         {
             _audioSource.Play();
         }
